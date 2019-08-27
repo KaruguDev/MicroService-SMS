@@ -10,11 +10,11 @@ def nexmo_send():
     """
 
     url = "https://rest.nexmo.com/sms/json"
-    headers = {'Content-Type':'application/json'}
+    headers = {'Accept':'application/json'}
     data = {'api_key': '750d0256', 'api_secret': 'OrZgdYLLzs4WzZ5B', 'to':'254720905558', 'text': 'Hello from Microservice SMS', 'from':'NEXMO'}
     json_data = json.dumps(data)
 
-    response = requests.post(url=url, headers=headers, data=json_data)
+    response = requests.post(url=url, data=data)
 
     return response
 
@@ -29,19 +29,19 @@ def at_send():
     url = 'https://api.africastalking.com/version1/messaging'
     test_url = 'https://api.sandbox.africastalking.com/version1/messaging'
     headers = {
-        'Content-Type': 'application/json',
-        'apiKey':'a7f94b43d1054707ac9f28b0da40602146e99c43a4fadddce86716c9175fc20c',
-        'username':'micro_sms'
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'ApiKey':'a7f94b43d1054707ac9f28b0da40602146e99c43a4fadddce86716c9175fc20c',
+        'Accept':'application/json'
         }
     test_headers = {
-        'Content-Type': 'application/json',
-        'apiKey': '8e3d658eceebbfd7b9648b9df54b34340c4774602422337b1c400bfe313fdb40',
-        'username': 'sandbox'
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'ApiKey': '8e3d658eceebbfd7b9648b9df54b34340c4774602422337b1c400bfe313fdb40',
+        'Accept': 'application/json'
     }
-    data = {'username':'sandbox', 'to': '254720905558', 'message': 'Hello from Microservice SMS'}
+    data = {'username':'micro_sms', 'to': '254720905558', 'message': 'Hello from Microservice SMS', 'bulkSMSMode':1}
     json_data = json.dumps(data)
 
-    response = requests.post(url=test_url, headers=test_headers, data=data)
+    response = requests.post(url=url, headers=headers, data=data)
 
     return response
 
@@ -49,5 +49,5 @@ resp = at_send()
 
 print(resp.status_code)
 print(resp.headers)
-print(resp.text)
-#print(response.json())
+#print(resp.text)
+print(resp.json())
