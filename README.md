@@ -20,6 +20,10 @@ This app, queues and sends sms via the bulk sms providers' HTTP endpoints to the
 4. \q
 5. exit
 
+### Create .env file
+1. cp .env.copy .env
+2. 
+
 ### Run Application
 
 
