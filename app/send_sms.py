@@ -18,3 +18,5 @@ class SendSMS:
             #if response sucessful
 
             #else queue back the message and increment the counter
+
+            #if counter is 3, post in delivery repsort

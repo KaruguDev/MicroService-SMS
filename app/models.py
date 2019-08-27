@@ -24,8 +24,8 @@ class BulkSMSProvider(db.Model):
 
 
 class Status(enum.Enum):
-    success = 'Success'
-    fail = 'Fail'
+    SUCCESS = 'success'
+    FAIL = 'fail'
 
 class DeliveryReport(db.Model):
 

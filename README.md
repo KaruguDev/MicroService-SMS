@@ -6,7 +6,6 @@ This app, queues and sends sms via the bulk sms providers' HTTP endpoints to the
 ```
 
 ### Create virtualenv
-
 1. cd <virtual_env_folder>
 2. virtualenv -p python3 micro_sms_env
 3. source micro_sms_env/bin/activate
@@ -24,8 +23,13 @@ This app, queues and sends sms via the bulk sms providers' HTTP endpoints to the
 1. cp .env.copy .env
 2. 
 
-### Run Application
+### Database Migrations
+1. flask db init
+2. flask db migrate
+3. flask db upgrade
 
+### Run Application
+1. python manage.py runserver
 
 ### Add Bulk SMS providers
 

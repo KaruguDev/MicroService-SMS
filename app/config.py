@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 APP_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.join(APP_DIR, '..')
 TEMPLATE_DIR = os.path.join(APP_DIR, 'templates')
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
 ENV_PATH = os.path.join(BASE_DIR, '.env')
 load_dotenv(ENV_PATH)
