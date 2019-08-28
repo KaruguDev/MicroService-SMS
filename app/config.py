@@ -19,7 +19,10 @@ class Config:
     STATIC_FOLDER = 'static'
 
 class TestConfig(Config):
-    SQLALCHEMY_DATABASE_URI = os.getenv('TEST_DATABASE_URL')
+    SQLALCHEMY_DATABASE_URI = "sqlite:///{0}/test_micro_sms.db".format(BASE_DIR)
+    TESTING = True
+    LIVESERVER_PORT = 8900
+    LIVESERVER_TIMEOUT = 10
 
 class ProductionConfig(Config):
     DEBUG = False

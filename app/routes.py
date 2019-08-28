@@ -6,6 +6,10 @@ from .config import STATIC_DIR
 from .models import BulkSMSProvider, DeliveryReport
 from .send_sms import SendSMS
 
+# 404 ROUTE
+@app.errorhandler(404)
+def error_404(e):
+    return render_template('404.html', title='404'), 404
 
 @app.route('/')
 def index():
@@ -16,10 +20,13 @@ def index():
 def static_files(filename):
     return send_from_directory(STATIC_DIR, filename)
 
-@app.route('/send-sms/service/<string:bulk_sms_provider>', methods=['POST'])
-def send_sms(bulk_sms_provider):
+@app.route('/send-sms/', methods=['POST'])
+def send_sms():
+    service_provider = request.args.get('service')
+
     #Get Bulk SMS Provider Object
-    bulk_sms_provider = BulkSMSProvider.query.filter_by(name=bulk_sms_provider).first()
+    bulk_sms_provider = BulkSMSProvider.query.filter_by(name=service_provider).first()
+
     if not bulk_sms_provider:
         #select default bulk sms provider
         bulk_sms_provider = BulkSMSProvider.query.filter_by(default=True).first()
@@ -30,6 +37,9 @@ def send_sms(bulk_sms_provider):
 
     #Instantiate send SMS
     send_sms = SendSMS(bulk_sms_provider)
+
+    if not request.data:
+        return jsonify({'error': 'No data was passed'}), 400
 
     if type(request.data) == bytes:
         #convert bytes data type to dictionary
