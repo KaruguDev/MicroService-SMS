@@ -3,7 +3,7 @@ from .config import Config
 from .extensions import db, migrate, admin
 
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 
 #App Configurations
 app.config.from_object(Config)

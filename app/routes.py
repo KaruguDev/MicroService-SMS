@@ -2,23 +2,17 @@ from flask import render_template, send_from_directory, url_for, request, jsonif
 from ast import literal_eval
 import json
 from app import app, db
-from .config import STATIC_DIR
 from .models import BulkSMSProvider, DeliveryReport
 from .send_sms import SendSMS
 
-# 404 ROUTE
-@app.errorhandler(404)
-def error_404(e):
-    return render_template('404.html', title='404'), 404
 
 @app.route('/')
 def index():
-    return 'Hello I am running'
-
+    return render_template('base.html', title="Home")
 
 @app.route('/static/<path:filename>')
 def static_files(filename):
-    return send_from_directory(STATIC_DIR, filename)
+    return send_from_directory('static', filename)
 
 @app.route('/send-sms/', methods=['POST'])
 def send_sms():
@@ -73,3 +67,8 @@ def send_sms():
     #return response
     return jsonify({'bulk_sms_provider':bulk_sms_provider.name, 'response_from_provider': response_from_provider}), response.status_code
 
+
+# 404 ROUTE
+@app.errorhandler(404)
+def error_404(e):
+    return render_template('404.html', title='404'), 404
