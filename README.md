@@ -1,12 +1,11 @@
 # Microservice SMS 
 
 ```
-This app, queues and sends sms via the set bulk sms aggregators.
+This Flask app, queues and sends sms via the set bulk sms aggregators.
 
 Africa's Talking, Twilio and Nexmo have been tested and are working,
-this does not mean that you tied to the above three.
+this does not mean that you are tied to the above three.
 
-Built using Flask
 
 ```
 
@@ -72,9 +71,23 @@ Built using Flask
 
 I will use the python library **requests**, you can use **postman** or **curl** to test
 
-`
+```
 import requests
+import json
 
-`
+url = "http://127.0.0.1:5000/send-sms/?service="
+
+twilio_data = {'To': '+254720xxxxxx', 'From': '+19386669155', 'Body': 'Demo Request via Microservice SMS'}
+
+nexmo_data = {'api_key': '<Your API Key>', 'api_secret': '<Your API Secret>', 'to':'254720xxxxxx', 'text': 'Demo Request via Microservice SMS', 'from':'NEXMO'}
+
+africas_talking_data = {'username':'<Your App Name>', 'to': '254720xxxxxx', 'message': 'Demo Request via Microservice SMS', 'bulkSMSMode':1}
+
+
+twilio_send = requests.post(url=url+'twilio', data=json.dumps(twilio_data))
+nexmo_send = requests.post(url=url+'nexmo', data=json.dumps(nexmo_data))
+africas_talking_send = requests.post(url=url+'africas_talking', data=json.dumps(africas_talking_data))
+
+```
 
 
