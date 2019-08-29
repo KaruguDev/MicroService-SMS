@@ -46,7 +46,7 @@ this does not mean that you are tied to the above three.
 2. click on "Create"
 3. Add the following for Twilio:-
     - Name: twilio
-    - API Endpoint: https://api.twilio.com/2010-04-01/Accounts/`<Insert Your Account SID>`/Messages.json
+    - API Endpoint: https://api.twilio.com/2010-04-01/Accounts/`Insert Your Account SID`/Messages.json
     - Headers: {'Accept': 'application/json'}
     - Username: `<Your Account SID>`
     - Password: `<Your Account Token>`
@@ -61,7 +61,7 @@ this does not mean that you are tied to the above three.
     - API Endpoint: https://api.africastalking.com/version1/messaging
     - Headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
-                'ApiKey':'<Your generated Aoi Key',
+                'ApiKey':`<Your generated Api Key>`,
                 'Accept':'application/json'
                 }
 
