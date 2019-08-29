@@ -1,0 +1,33 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+<style>
+    .footer {
+        position: absolute;
+        bottom: 0;
+        height: 60px;
+        width: 73.6%;
+        padding-top: 30px;
+        background-color: #eee;
+    }
+</style>
+
+<div class="jumbotron text-center">
+    <div class="container">
+        <h2><b>Welcome to Microservice SMS</b></h2>
+        <pre style="border: 0; background-color: #eee">
+            Twilio, Africa's Talking, Nexmo bulk sms aggregators have been tested on this platform.
+            This is not limited to the above aggregators, feel free to setup others and use.  
+        </pre>
+    </div>
+</div>
+<footer class="footer">
+   <div class="container">
+       <div class="row">
+           <div class="col-md-4 col-md-offset-4">
+               <p class="text-center">Built by <a href="https://github.com/KaruguDev">KaruguDev</a> 2019</p>
+           </div>
+       </div>
+   </div>
+</footer>
+{% endblock %}

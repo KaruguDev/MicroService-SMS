@@ -6,10 +6,6 @@ from .models import BulkSMSProvider, DeliveryReport
 from .send_sms import SendSMS
 
 
-@app.route('/')
-def index():
-    return render_template('base.html', title="Home")
-
 @app.route('/static/<path:filename>')
 def static_files(filename):
     return send_from_directory('static', filename)
