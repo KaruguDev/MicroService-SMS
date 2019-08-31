@@ -6,12 +6,12 @@ def nexmo_send():
     """
         curl - X POST  https: // rest.nexmo.com/sms/json 
         - d api_key = 750d0256 - d api_secret = OrZgdYLLzs4WzZ5B 
-        - d to = 254720905558 - d from = "nexmo" - d text = "Hello from Nexmo"
+        - d to = 254720XXXXXX - d from = "nexmo" - d text = "Hello from Nexmo"
     """
 
     url = "https://rest.nexmo.com/sms/json"
     headers = {'Accept':'application/json'}
-    data = {'api_key': '750d0256', 'api_secret': 'OrZgdYLLzs4WzZ5B', 'to':'254720905558', 'text': 'Hello from Microservice SMS', 'from':'NEXMO'}
+    data = {'api_key': '750d0256', 'api_secret': 'OrZgdYLLzs4WzZ5B', 'to':'254720XXXXXX', 'text': 'Hello from Microservice SMS', 'from':'NEXMO'}
     json_data = json.dumps(data)
 
     response = requests.post(url=url, data=data)
@@ -38,7 +38,7 @@ def at_send():
         'ApiKey': '8e3d658eceebbfd7b9648b9df54b34340c4774602422337b1c400bfe313fdb40',
         'Accept': 'application/json'
     }
-    data = {'username':'micro_sms', 'to': '254720905558', 'message': 'Hello from Microservice SMS', 'bulkSMSMode':1}
+    data = {'username':'micro_sms', 'to': '254720XXXXXX', 'message': 'Hello from Microservice SMS', 'bulkSMSMode':1}
     json_data = json.dumps(data)
 
     response = requests.post(url=url, headers=headers, data=data)
@@ -55,14 +55,14 @@ def at_send():
 def twilio_send():
     """
         curl 'https://api.twilio.com/2010-04-01/Accounts/AC9d603f2a0e7eb8b421d4fd968f7bad9d/Messages.json' -X POST \
-        --data-urlencode 'To=+254720905558' \
+        --data-urlencode 'To=+254720XXXXXX' \
         --data-urlencode 'From=+19386669155' \
         --data-urlencode 'Body=Hello from Microservice SMS' \
         -u AC9d603f2a0e7eb8b421d4fd968f7bad9d:4294c80514d961d1bb3aea8c007b7d44
     """
     url = 'https://api.twilio.com/2010-04-01/Accounts/AC9d603f2a0e7eb8b421d4fd968f7bad9d/Messages.json'
     headers = {'Accept': 'application/json'}
-    data = {'To': '+254720905558', 'From': '+19386669155', 'Body': 'Hello from Microservice SMS'}
+    data = {'To': '+254720XXXXXX', 'From': '+19386669155', 'Body': 'Hello from Microservice SMS'}
 
     response = requests.post(url=url, headers=headers, data=data, auth=(
         'AC9d603f2a0e7eb8b421d4fd968f7bad9d', '4294c80514d961d1bb3aea8c007b7d44'))
