@@ -54,18 +54,18 @@ def at_send():
 
 def twilio_send():
     """
-        curl 'https://api.twilio.com/2010-04-01/Accounts/AC9d603f2a0e7eb8b421d4fd968f7bad9d/Messages.json' -X POST \
+        curl 'https://api.twilio.com/2010-04-01/Accounts/YourAccountSID/Messages.json' -X POST \
         --data-urlencode 'To=+254720XXXXXX' \
         --data-urlencode 'From=+19386669155' \
         --data-urlencode 'Body=Hello from Microservice SMS' \
-        -u AC9d603f2a0e7eb8b421d4fd968f7bad9d:4294c80514d961d1bb3aea8c007b7d44
+        -u YourAccountSID:4294c80514d961d1bb3aea8c007b7d44
     """
-    url = 'https://api.twilio.com/2010-04-01/Accounts/AC9d603f2a0e7eb8b421d4fd968f7bad9d/Messages.json'
+    url = 'https://api.twilio.com/2010-04-01/Accounts/YourAccountSID/Messages.json'
     headers = {'Accept': 'application/json'}
     data = {'To': '+254720XXXXXX', 'From': '+19386669155', 'Body': 'Hello from Microservice SMS'}
 
     response = requests.post(url=url, headers=headers, data=data, auth=(
-        'AC9d603f2a0e7eb8b421d4fd968f7bad9d', '4294c80514d961d1bb3aea8c007b7d44'))
+        'YourAccountSID', '4294c80514d961d1bb3aea8c007b7d44'))
 
     return response
 

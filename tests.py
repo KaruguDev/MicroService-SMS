@@ -27,9 +27,9 @@ class MicroserviceSMSTest(LiveServerTestCase):
     def test_2_create_bulk_sms_provider(self):
         name = "twilio"
         headers = str({'Accept': 'application/json'}) #database datatype is Text, that is why i am coverting dict to str
-        api_endpoint = 'https://api.twilio.com/2010-04-01/Accounts/AC9d603f2a0e7eb8b421d4fd968f7bad9d/Messages.json'
-        username = 'AC9d603f2a0e7eb8b421d4fd968f7bad9d'
-        password = '4294c80514d961d1bb3aea8c007b7d44'
+        api_endpoint = 'https://api.twilio.com/2010-04-01/Accounts/YourAccountSID/Messages.json'
+        username = 'AccountUsername'
+        password = 'AccountPassword'
 
         bsmsp = BulkSMSProvider(name=name, headers=headers, api_endpoint=api_endpoint, username=username, password=password)
         db.session.add(bsmsp)
@@ -40,7 +40,7 @@ class MicroserviceSMSTest(LiveServerTestCase):
 
     #test sending sms with invalid bulk sms provider
     def test_3_send_sms_invalid_bsmsp(self):
-        sdata = {'To': '+254720905558', 'From': '+19386669155',
+        sdata = {'To': '+InsertPhoneNumber', 'From': '+19386669155',
                 'Body': 'Hello, Tests are being run on Microservice SMS App'}
 
         send_sms_url = self.get_server_url()+'/send-sms/?service=twilo'
@@ -65,7 +65,7 @@ class MicroserviceSMSTest(LiveServerTestCase):
         bsmp.default = True
         db.session.commit()
 
-        sdata = {'To': '+254720905558', 'From': '+19386669155',
+        sdata = {'To': '+InsertPhoneNumber', 'From': '+19386669155',
                 'Body': 'Hello, Tests are being run on Microservice SMS App'}
 
         send_sms_url = self.get_server_url()+'/send-sms/'
@@ -75,7 +75,7 @@ class MicroserviceSMSTest(LiveServerTestCase):
 
     #test sending sms with a valid bulk sms provider
     def test_5_send_sms_valid_bsmsp(self):
-        sdata = {'To': '+254720905558', 'From': '+19386669155',
+        sdata = {'To': '+InsertPhoneNumber', 'From': '+19386669155',
                 'Body': 'Hello, Tests are being run on Microservice SMS App'}
 
         send_sms_url = self.get_server_url()+'/send-sms/?service=twilio'
