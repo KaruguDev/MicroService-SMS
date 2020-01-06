@@ -28,6 +28,9 @@ this does not mean that you are tied to the above three.
 2. add the following parameters:-
     - DATABASE_URL="postgresql://postgres:postgres@localhost/micro_sms"
     - SECRET_KEY="iAmas3cR3Tk3y"
+    - AFRICAS_TALKING_API_KEY=`<Your AT API KEY>`
+    - AFRICAS_TALKING_USERNAME=`<Your AT APP Name>`
+    - TEST_PHONE=`<Your Mobile Phone Number (254701234567)>`
 3. save and exit
 
 ### Database Migrations

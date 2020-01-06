@@ -25,13 +25,12 @@ class MicroserviceSMSTest(LiveServerTestCase):
 
     #create bulk sms provider
     def test_2_create_bulk_sms_provider(self):
-        name = "twilio"
-        headers = str({'Accept': 'application/json'}) #database datatype is Text, that is why i am coverting dict to str
-        api_endpoint = 'https://api.twilio.com/2010-04-01/Accounts/YourAccountSID/Messages.json'
-        username = 'AccountUsername'
-        password = 'AccountPassword'
+        name = "africas_talking"
+        headers = str({'Content-Type': 'application/x-www-form-urlencoded', \
+                    'ApiKey': f'{app.config["AFRICAS_TALKING_API_KEY"]}' , 'Accept': 'application/json' })  # database datatype is Text, that is why i am coverting dict to str
+        api_endpoint = 'https://api.africastalking.com/version1/messaging'
 
-        bsmsp = BulkSMSProvider(name=name, headers=headers, api_endpoint=api_endpoint, username=username, password=password)
+        bsmsp = BulkSMSProvider(name=name, headers=headers, api_endpoint=api_endpoint)
         db.session.add(bsmsp)
         db.session.commit()
 
@@ -40,8 +39,8 @@ class MicroserviceSMSTest(LiveServerTestCase):
 
     #test sending sms with invalid bulk sms provider
     def test_3_send_sms_invalid_bsmsp(self):
-        sdata = {'To': '+InsertPhoneNumber', 'From': '+19386669155',
-                'Body': 'Hello, Tests are being run on Microservice SMS App'}
+        sdata = {'to': f'{app.config["TEST_PHONE"]}', 'username': f'{app.config["AFRICAS_TALKING_USERNAME"]}',
+                'message': 'Hello, Tests are being run on Microservice SMS App', 'bulkSMSMode':1}
 
         send_sms_url = self.get_server_url()+'/send-sms/?service=twilo'
 
@@ -60,32 +59,32 @@ class MicroserviceSMSTest(LiveServerTestCase):
             as long as there is a default bulk sms provider
         """
         #set default bsmsp
-        name = 'twilio'
+        name = 'africas_talking'
         bsmp = BulkSMSProvider.query.filter_by(name=name).first()
         bsmp.default = True
         db.session.commit()
 
-        sdata = {'To': '+InsertPhoneNumber', 'From': '+19386669155',
-                'Body': 'Hello, Tests are being run on Microservice SMS App'}
+        sdata = {'to': f'{app.config["TEST_PHONE"]}', 'username': f'{app.config["AFRICAS_TALKING_USERNAME"]}',
+                 'message': 'Hello, Tests are being run on Microservice SMS App', 'bulkSMSMode': 1}
 
         send_sms_url = self.get_server_url()+'/send-sms/'
 
         post_resp = requests.post(url=send_sms_url, data=json.dumps(sdata))
-        self.assertDictContainsSubset({'bulk_sms_provider': 'twilio'}, post_resp.json())
+        self.assertDictContainsSubset({'bulk_sms_provider': 'africas_talking'}, post_resp.json())
 
     #test sending sms with a valid bulk sms provider
     def test_5_send_sms_valid_bsmsp(self):
-        sdata = {'To': '+InsertPhoneNumber', 'From': '+19386669155',
-                'Body': 'Hello, Tests are being run on Microservice SMS App'}
+        sdata = {'to': f'{app.config["TEST_PHONE"]}', 'username': f'{app.config["AFRICAS_TALKING_USERNAME"]}',
+                 'message': 'Hello, Tests are being run on Microservice SMS App', 'bulkSMSMode': 1}
 
-        send_sms_url = self.get_server_url()+'/send-sms/?service=twilio'
+        send_sms_url = self.get_server_url()+'/send-sms/?service=africas_talking'
 
         post_resp = requests.post(url=send_sms_url, data=json.dumps(sdata))
-        self.assertDictContainsSubset({'bulk_sms_provider': 'twilio'}, post_resp.json())
+        self.assertDictContainsSubset({'bulk_sms_provider': 'africas_talking'}, post_resp.json())
     
     #test sending sms with a valid bulk sms provider
     def test_6_send_sms_with_no_data(self):
-        send_sms_url = self.get_server_url()+'/send-sms/?service=twilio'
+        send_sms_url = self.get_server_url()+'/send-sms/?service=africas_talking'
 
         post_resp = requests.post(url=send_sms_url)
         print(post_resp.json())
