@@ -24,7 +24,11 @@ this does not mean that you are tied to the above three.
 5. exit
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ### Create .env file in the project folder and not in the app folder
+=======
+### Create .env file
+>>>>>>> dda81d8aa21febfe62c13a458a309ade2d3980be
 =======
 ### Create .env file
 >>>>>>> dda81d8aa21febfe62c13a458a309ade2d3980be
@@ -35,11 +39,14 @@ this does not mean that you are tied to the above three.
     - AFRICAS_TALKING_API_KEY=`<Your AT API KEY>`
     - AFRICAS_TALKING_USERNAME=`<Your AT APP Name>`
 <<<<<<< HEAD
+<<<<<<< HEAD
     - TWILIO_ACCOUNT_SID = `<Your Twilio Account SID>`
     - TWILIO_ACCOUNT_TOKEN = `<'Your Twilio Account Token>`
     - TWILIO_FROM = `<Twilio Telephone Number>`
     - NEXMO_API_KEY = `<'Your Nexmo API Key>`
     - NEXMO_API_SECRET = `<'Your Nexmo API Secret>`
+=======
+>>>>>>> dda81d8aa21febfe62c13a458a309ade2d3980be
 =======
 >>>>>>> dda81d8aa21febfe62c13a458a309ade2d3980be
     - TEST_PHONE=`<Your Mobile Phone Number (254701234567)>`
@@ -55,8 +62,12 @@ this does not mean that you are tied to the above three.
 
 ### Run Application
 <<<<<<< HEAD
+<<<<<<< HEAD
 1. export FLASK_ENV='development'
 2. flask run
+=======
+1. python manage.py runserver
+>>>>>>> dda81d8aa21febfe62c13a458a309ade2d3980be
 =======
 1. python manage.py runserver
 >>>>>>> dda81d8aa21febfe62c13a458a309ade2d3980be
@@ -112,3 +123,4 @@ requests.post(url=url+'africas_talking', data=json.dumps(msg_data))
 
 ### Delivery Reports
 To view your sms delivery reports go to http://127.0.0.1:5000/deliveryreport/
+

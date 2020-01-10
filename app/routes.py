@@ -30,7 +30,6 @@ def send_sms():
             return jsonify({'error': 'Bulk SMS Provider has not been defined'}), 400
         
             
-
     #Instantiate send SMS
     send_sms = SendSMS(bulk_sms_provider)
 
